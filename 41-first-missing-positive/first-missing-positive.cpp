@@ -1,16 +1,17 @@
 class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
-        // cout<<nums.size();
         int n = nums.size();
-        vector<bool> seen(n+1, false);
-        for(const auto num : nums){
-            if(num > 0 && num <= n){
-                seen[num] = true;
+        // if(n == 1 || n==0) return n;
+        for(int i = 0; i<n; i++){
+            while(nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]){
+                swap(nums[nums[i] - 1], nums[i]);
             }
         }
-        for(int i = 1; i <= n; i++){
-            if(!seen[i]) return i;
+        int ans;
+        for(int i = 0; i < n; i++){
+            if(nums[i] != i+1) 
+            return i+1;
         }
         return n+1;
     }
