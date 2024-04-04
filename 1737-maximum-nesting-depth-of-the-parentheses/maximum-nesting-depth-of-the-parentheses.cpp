@@ -8,9 +8,9 @@ public:
         for(int i = 0; i < n; i++){
             if(s[i] == '('){
                 cnt++;
-            }
-            if(s[i] == ')'){
                 ans = max(cnt, ans);
+            }
+            else if(s[i] == ')'){
                 cnt--;
             }
         }
