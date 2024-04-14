@@ -1,18 +1,17 @@
 class Solution {
 public:
-    int sumOfLeftLeaves(TreeNode* root) {
-        return dfs(root, false);
+int solve(TreeNode* root)
+    {
+        if(!root) return 0;
+        int sum = 0;
+        if (root->left && !root->left->left && !root->left->right) {
+        sum += root->left->val;
+        }
+        sum += solve(root -> left);          
+        sum += solve(root -> right);
+        return sum;
     }
-    
-    int dfs(TreeNode* node, bool isLeft) {
-        if (!node) {
-            return 0;
-        }
-        if (!node->left && !node->right) { // Leaf node
-            return isLeft ? node->val : 0;
-        }
-        int leftSum = dfs(node->left, true);    // Traverse left child
-        int rightSum = dfs(node->right, false); // Traverse right child
-        return leftSum + rightSum;
+    int sumOfLeftLeaves(TreeNode* root) {
+        return solve(root);
     }
 };
