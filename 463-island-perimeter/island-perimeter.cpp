@@ -1,5 +1,5 @@
 class Solution {
-    int checkSurr(int i, int j, vector<vector<int>>& grid){
+    /*int checkSurr(int i, int j, vector<vector<int>>& grid){
         int surr = 0;
         int n = grid.size();
         int m = grid[0].size();
@@ -15,13 +15,23 @@ class Solution {
             }
         }
         return surr;
-    }
+    }*/
 public:
     int islandPerimeter(vector<vector<int>>& grid) {
         int ans = 0;
         int n = grid.size();
         int m = grid[0].size();
-        int surr;
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(grid[i][j] == 1){
+                    ans+=4;
+                    if(i > 0 && grid[i-1][j] == 1) ans -= 2;
+                    if(j > 0 && grid[i][j-1] == 1) ans -= 2;
+                } 
+            }
+        }
+        /*int surr;
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
                 if(grid[i][j] == 1){
@@ -29,7 +39,7 @@ public:
                     ans += 4-surr;
                 }
             }
-        }
+        }*/
         return ans;
     }
 };
